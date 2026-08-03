@@ -1,340 +1,109 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bibrata Sarkar — Teaching Notes</title>
+<meta name="description" content="Computer Organization, DAA, and ADSA course material by Bibrata Sarkar, Assistant Professor.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-mark">§ <b>Bibrata Sarkar</b> / teaching notes</div>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="subjects.html">Subjects</a>
+    </div>
+  </div>
+</nav>
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Assistant Professor · Computer Science</p>
+      <h1>Notes, decks and question banks for students who want the <em>why</em>, not just the answer.</h1>
+      <p class="lede">Experienced Computer Science trainer specializing in Data Structures, Design &amp; Analysis of Algorithms, and OOPs across Java, C++, and C. Qualified in GATE Computer Science and NET Computer Application. I build course material that bridges theory and real-world application.</p>
+      <div class="hero-actions">
+        <a href="subjects.html" class="btn">Browse subjects →</a>
+        <a href="https://www.linkedin.com/in/bibrata-sarkar" target="_blank" rel="noopener" class="btn ghost">Connect on LinkedIn</a>
+      </div>
+    </div>
+    <div class="portrait-frame">
+      <img src="profilePic.jpg" alt="Bibrata Sarkar">
+      <div class="portrait-tag">B.SARKAR — SENIOR TECHNICAL TRAINER</div>
+    </div>
+  </div>
+</header>
+<section class="facts">
+  <div class="fact">
+    <p class="n">01 · FOCUS</p>
+    <p class="d">Data Structures, DAA,OS,DBMS,CN,COA,OOPs (Java / C++ / C)</p>
+  </div>
+  <div class="fact">
+    <p class="n">02 · CREDENTIALS</p>
+    <p class="d">GATE (CS) and NET (Computer Applications) qualified, multiple attempts</p>
+  </div>
+  <div class="fact">
+    <p class="n">03 · APPROACH</p>
+    <p class="d">Practical, engaging training that bridges theory and real-world application</p>
+  </div>
+</section>
 
-:root {
-  --ink: #171d29;
-  --paper: #eef0f4;
-  --paper-raised: #ffffff;
-  --line: #ccd1dc;
-  --accent: #d98c2b;
-  --accent-dim: #f2e3cd;
-  --teal: #1f5e5b;
-  --muted: #5a6172;
-  --radius: 2px;
-  --max: 1040px;
-}
+<section class="section gallery-section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">In the classroom</p>
+      <h2>Teaching, in practice</h2>
+      <p>A look at recent lectures and lab sessions across CO, DAA, and ADSA.</p>
+    </div>
+    <div class="gallery-grid">
+      <figure class="gallery-item">
+        <img src="images/lecture1.jpg" alt="Lecture session">
+        <figcaption>Guiding students through Data Structures</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="images/lecture2.jpg" alt="Lecture session">
+        <figcaption>Lab session — Computer Organization</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="images/lecture3.jpg" alt="Lecture session">
+        <figcaption>Explaining algorithm design</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="images/lecture4.jpg" alt="Lecture session">
+        <figcaption>Student engagement during class</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="images/lecture5.jpg" alt="Lecture session">
+        <figcaption>Hands-on lab guidance</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="images/lecture6.jpg" alt="Lecture session">
+        <figcaption>Classroom discussion</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="images/lecture7.jpg" alt="Lecture session">
+        <figcaption>Wrapping up a session</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
 
-* { box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: 'Sora', system-ui, sans-serif;
-  line-height: 1.55;
-  -webkit-font-smoothing: antialiased;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition: none !important; }
-}
-
-a { color: inherit; text-decoration: none; }
-
-.wrap {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 0 28px;
-}
-
-/* --- Nav --- */
-.nav {
-  border-bottom: 1px solid var(--line);
-  background: var(--paper);
-  position: sticky;
-  top: 0;
-  z-index: 50;
-}
-.nav-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 28px;
-  max-width: var(--max);
-  margin: 0 auto;
-}
-.nav-mark {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
-  letter-spacing: 0.06em;
-  color: var(--muted);
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-.nav-mark b { color: var(--ink); font-weight: 600; }
-.nav-links { display: flex; gap: 28px; font-size: 14px; font-weight: 500; }
-.nav-links a { color: var(--muted); border-bottom: 1px solid transparent; padding-bottom: 3px; }
-.nav-links a:hover, .nav-links a.active { color: var(--ink); border-bottom-color: var(--accent); }
-
-/* --- Hero / intro --- */
-.hero {
-  padding: 96px 0 72px;
-  border-bottom: 1px solid var(--line);
-}
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.4fr 0.9fr;
-  gap: 56px;
-  align-items: center;
-}
-.eyebrow {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin: 0 0 18px;
-}
-.hero h1 {
-  font-family: 'Newsreader', serif;
-  font-weight: 500;
-  font-size: clamp(34px, 5vw, 54px);
-  line-height: 1.12;
-  margin: 0 0 22px;
-  letter-spacing: -0.01em;
-}
-.hero h1 em { font-style: italic; color: var(--teal); }
-.hero p.lede {
-  font-size: 17px;
-  color: var(--muted);
-  max-width: 52ch;
-  margin: 0 0 28px;
-}
-.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 22px;
-  font-size: 14px;
-  font-weight: 600;
-  border-radius: var(--radius);
-  border: 1px solid var(--ink);
-  background: var(--ink);
-  color: var(--paper);
-  cursor: pointer;
-}
-.btn:hover { background: #2a3346; }
-.btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
-.btn.ghost:hover { border-color: var(--ink); }
-
-.portrait-frame {
-  aspect-ratio: 4/5;
-  border: 1px solid var(--line);
-  background: var(--paper-raised);
-  overflow: hidden;
-  position: relative;
-}
-.portrait-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.portrait-tag {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  background: rgba(23,29,41,0.88);
-  color: var(--paper);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11.5px;
-  letter-spacing: 0.04em;
-  padding: 10px 14px;
-}
-
-/* --- Fact strip --- */
-.facts {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-bottom: 1px solid var(--line);
-}
-.fact {
-  padding: 26px 28px;
-  border-right: 1px solid var(--line);
-}
-.fact:last-child { border-right: none; }
-.fact .n {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  color: var(--accent);
-  margin: 0 0 6px;
-}
-.fact .d { font-size: 14.5px; color: var(--muted); margin: 0; }
-
-/* --- Section --- */
-.section { padding: 68px 0; }
-.section-head { margin-bottom: 40px; }
-.section-head .eyebrow { margin-bottom: 10px; }
-.section-head h2 {
-  font-family: 'Newsreader', serif;
-  font-weight: 500;
-  font-size: 32px;
-  margin: 0;
-}
-.section-head p { color: var(--muted); margin: 10px 0 0; max-width: 60ch; }
-
-/* --- Subject cards --- */
-.subject-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
-}
-.subject-card {
-  background: var(--paper-raised);
-  padding: 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  transition: background 0.15s ease;
-}
-.subject-card:hover { background: #fbf7ef; }
-.subject-card .code {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11.5px;
-  color: var(--accent);
-  letter-spacing: 0.06em;
-}
-.subject-card h3 {
-  font-family: 'Newsreader', serif;
-  font-size: 22px;
-  font-weight: 500;
-  margin: 0;
-}
-.subject-card p { color: var(--muted); font-size: 14px; margin: 0; flex-grow: 1; }
-.subject-card .meta {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  color: var(--muted);
-  display: flex;
-  justify-content: space-between;
-  padding-top: 10px;
-  border-top: 1px solid var(--line);
-}
-.subject-card .meta .go { color: var(--ink); font-weight: 600; }
-.subject-card:hover .meta .go { color: var(--accent); }
-
-/* --- Topic list (subject page) --- */
-.topic-list { border: 1px solid var(--line); background: var(--paper-raised); }
-.topic-row {
-  display: grid;
-  grid-template-columns: 60px 1fr auto;
-  gap: 18px;
-  align-items: center;
-  padding: 22px 24px;
-  border-bottom: 1px solid var(--line);
-  cursor: pointer;
-}
-.topic-row:last-child { border-bottom: none; }
-.topic-row:hover { background: #fbf7ef; }
-.topic-row .idx {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
-  color: var(--accent);
-}
-.topic-row h4 { margin: 0 0 4px; font-size: 16.5px; font-weight: 600; }
-.topic-row p { margin: 0; font-size: 13.5px; color: var(--muted); }
-.topic-row .open {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  color: var(--muted);
-  white-space: nowrap;
-}
-.topic-row.active { background: var(--accent-dim); }
-.topic-row.active .idx, .topic-row.active .open { color: var(--teal); }
-
-/* --- Viewer --- */
-.viewer-wrap {
-  border: 1px solid var(--line);
-  background: var(--paper-raised);
-  margin-top: 28px;
-}
-.viewer-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 20px;
-  border-bottom: 1px solid var(--line);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12.5px;
-  color: var(--muted);
-}
-.viewer-bar .dl { color: var(--ink); font-weight: 600; }
-.viewer-bar .dl:hover { color: var(--accent); }
-.viewer-frame { width: 100%; height: 78vh; border: none; display: block; background: #fafafa; }
-.viewer-empty {
-  padding: 80px 20px;
-  text-align: center;
-  color: var(--muted);
-  font-size: 14.5px;
-}
-
-/* --- Gallery --- */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
-}
-.gallery-item {
-  margin: 0;
-  position: relative;
-  overflow: hidden;
-  background: var(--paper-raised);
-}
-.gallery-item img {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-  display: block;
-  filter: grayscale(15%);
-  transition: filter 0.25s ease, transform 0.4s ease;
-}
-.gallery-item:hover img {
-  filter: grayscale(0%);
-  transform: scale(1.04);
-}
-.gallery-item figcaption {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 12px 14px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11.5px;
-  letter-spacing: 0.02em;
-  color: var(--paper);
-  background: linear-gradient(to top, rgba(23,29,41,0.9), rgba(23,29,41,0));
-}
-
-/* --- Footer --- */
-.footer {
-  border-top: 1px solid var(--line);
-  padding: 36px 0;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12.5px;
-  color: var(--muted);
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.footer a { color: var(--ink); border-bottom: 1px solid var(--line); }
-.footer a:hover { color: var(--accent); border-color: var(--accent); }
-
-/* --- Breadcrumb --- */
-.crumb {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12.5px;
-  color: var(--muted);
-  padding: 22px 0 0;
-}
-.crumb a:hover { color: var(--accent); }
-.crumb .sep { margin: 0 8px; color: var(--line); }
-
-@media (max-width: 780px) {
-  .hero-grid { grid-template-columns: 1fr; }
-  .facts { grid-template-columns: 1fr; }
-  .fact { border-right: none; border-bottom: 1px solid var(--line); }
-  .topic-row { grid-template-columns: 40px 1fr; }
-  .topic-row .open { display: none; }
-  .gallery-item img { height: 200px; }
-}
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Course material</p>
+      <h2>Pick up where the lecture left off</h2>
+      <p>Every subject below is organized unit-wise, with slide decks and reference PDFs you can view online or download.</p>
+    </div>
+    <a href="subjects.html" class="btn">View all subjects →</a>
+  </div>
+</section>
+<footer class="footer">
+  <div class="wrap footer" style="border:none; padding:0;">
+    <span>© 2026 Bibrata Sarkar</span>
+    <span><a href="mailto:sarkarbibrata@gmail.com">sarkarbibrata@gmail.com</a> · <a href="https://www.linkedin.com/in/bibrata-sarkar" target="_blank" rel="noopener">LinkedIn</a></span>
+  </div>
+</footer>
+</body>
+</html>
