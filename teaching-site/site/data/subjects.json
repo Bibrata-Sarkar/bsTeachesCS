@@ -1,0 +1,42 @@
+{
+  "subjects": [
+    {
+      "id": "computer-organization",
+      "name": "Computer Organization",
+      "code": "BCA2012",
+      "description": "Digital data representation, CPU architecture, memory hierarchy, I/O organization, and pipelining fundamentals.",
+      "topics": [
+        {
+          "id": "unit-1",
+          "title": "Unit 1 — Introduction & Physical Data Handling",
+          "summary": "Functional units of a computer, number systems, Boolean algebra, logic gates, and combinational circuits.",
+          "pdf": "pdfs/computer-organization/unit-1.pdf"
+        },
+        {
+          "id": "unit-2",
+          "title": "Unit 2 — The Central Processing Unit",
+          "summary": "Registers, the instruction cycle, instruction set architecture, addressing modes, and control unit design.",
+          "pdf": "pdfs/computer-organization/unit-2.pdf"
+        },
+        {
+          "id": "unit-3",
+          "title": "Unit 3 — Memory Organization",
+          "summary": "Memory hierarchy, RAM/ROM, cache mapping techniques, and secondary storage.",
+          "pdf": "pdfs/computer-organization/unit-3.pdf"
+        },
+        {
+          "id": "unit-4",
+          "title": "Unit 4 — Input/Output Organization",
+          "summary": "I/O devices, programmed I/O, interrupt-driven I/O, and Direct Memory Access (DMA).",
+          "pdf": "pdfs/computer-organization/unit-4.pdf"
+        },
+        {
+          "id": "unit-5",
+          "title": "Unit 5 — Assembly Language & Advanced Concepts",
+          "summary": "Assembly language basics, instruction pipelining, and a system-level course review.",
+          "pdf": "pdfs/computer-organization/unit-5.pdf"
+        }
+      ]
+    }
+  ]
+}
