@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Subject — Bibrata Sarkar</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-mark">§ <b>Bibrata Sarkar</b> / teaching notes</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="subjects.html" class="active">Subjects</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <p class="crumb">
+    <a href="index.html">Home</a><span class="sep">/</span>
+    <a href="subjects.html">Subjects</a><span class="sep">/</span>
+    <span id="crumb-current">…</span>
+  </p>
+</div>
+
+<section class="section" style="padding-top:32px;">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow" id="subject-code">SUBJECT</p>
+      <h2 id="subject-name">Loading…</h2>
+      <p id="subject-desc"></p>
+    </div>
+
+    <div style="display:grid; grid-template-columns: 340px 1fr; gap: 32px; align-items:start;">
+      <div class="topic-list" id="topic-list">
+        <!-- injected -->
+      </div>
+
+      <div class="viewer-wrap">
+        <div class="viewer-bar">
+          <span id="viewer-label">Select a unit to preview</span>
+          <a id="viewer-download" class="dl" href="#" target="_blank" rel="noopener" style="display:none;">Download PDF ↓</a>
+        </div>
+        <div id="viewer-slot">
+          <div class="viewer-empty">Choose a unit from the list to view its slides here.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap footer" style="border:none; padding:0;">
+    <span>© 2026 Bibrata Sarkar</span>
+    <span><a href="mailto:sarkarbibrata@gmail.com">sarkarbibrata@gmail.com</a> · <a href="https://www.linkedin.com/in/bibrata-sarkar" target="_blank" rel="noopener">LinkedIn</a></span>
+  </div>
+</footer>
+
+<script>
+const params = new URLSearchParams(location.search);
+const subjectId = params.get('id');
+
+fetch('data/subjects.json')
+  .then(r => r.json())
+  .then(data => {
+    const subject = data.subjects.find(s => s.id === subjectId);
+    if (!subject) {
+      document.getElementById('subject-name').textContent = 'Subject not found';
+      document.getElementById('crumb-current').textContent = 'Not found';
+      return;
+    }
+
+    document.title = subject.name + ' — Bibrata Sarkar';
+    document.getElementById('page-title').textContent = subject.name + ' — Bibrata Sarkar';
+    document.getElementById('subject-code').textContent = subject.code || 'SUBJECT';
+    document.getElementById('subject-name').textContent = subject.name;
+    document.getElementById('subject-desc').textContent = subject.description || '';
+    document.getElementById('crumb-current').textContent = subject.name;
+
+    const list = document.getElementById('topic-list');
+    list.innerHTML = subject.topics.map((t, i) => `
+      <div class="topic-row" data-pdf="${t.pdf}" data-title="${t.title.replace(/"/g, '&quot;')}" id="row-${t.id}">
+        <span class="idx">${String(i + 1).padStart(2, '0')}</span>
+        <div>
+          <h4>${t.title}</h4>
+          <p>${t.summary || ''}</p>
+        </div>
+        <span class="open">View →</span>
+      </div>
+    `).join('');
+
+    const rows = list.querySelectorAll('.topic-row');
+    const label = document.getElementById('viewer-label');
+    const dl = document.getElementById('viewer-download');
+    const slot = document.getElementById('viewer-slot');
+
+    function openTopic(row) {
+      rows.forEach(r => r.classList.remove('active'));
+      row.classList.add('active');
+      const pdf = row.dataset.pdf;
+      const title = row.dataset.title;
+      label.textContent = title;
+      dl.href = pdf;
+      dl.style.display = 'inline';
+      slot.innerHTML = `<iframe class="viewer-frame" src="${pdf}#toolbar=1" title="${title}"></iframe>`;
+    }
+
+    rows.forEach(row => row.addEventListener('click', () => openTopic(row)));
+
+    // Auto-open first topic, or one specified via ?unit=
+    const unitParam = params.get('unit');
+    const target = unitParam ? document.getElementById('row-' + unitParam) : rows[0];
+    if (target) openTopic(target);
+  })
+  .catch(() => {
+    document.getElementById('subject-name').textContent = 'Could not load subjects.json';
+  });
+</script>
+
+</body>
+</html>

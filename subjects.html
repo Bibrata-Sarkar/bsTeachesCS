@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subjects — Bibrata Sarkar</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-mark">§ <b>Bibrata Sarkar</b> / teaching notes</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="subjects.html" class="active">Subjects</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <p class="crumb"><a href="index.html">Home</a><span class="sep">/</span>Subjects</p>
+</div>
+
+<section class="section" style="padding-top:32px;">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">All subjects</p>
+      <h2>Course material by subject</h2>
+      <p>New subjects and units get added here over time — check back for updates.</p>
+    </div>
+    <div id="subject-grid" class="subject-grid">
+      <!-- injected -->
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap footer" style="border:none; padding:0;">
+    <span>© 2026 Bibrata Sarkar</span>
+    <span><a href="mailto:sarkarbibrata@gmail.com">sarkarbibrata@gmail.com</a> · <a href="https://www.linkedin.com/in/bibrata-sarkar" target="_blank" rel="noopener">LinkedIn</a></span>
+  </div>
+</footer>
+
+<script>
+fetch('data/subjects.json')
+  .then(r => r.json())
+  .then(data => {
+    const grid = document.getElementById('subject-grid');
+    if (!data.subjects || !data.subjects.length) {
+      grid.innerHTML = '<p style="padding:28px;color:var(--muted);">No subjects added yet.</p>';
+      return;
+    }
+    grid.innerHTML = data.subjects.map(s => `
+      <a class="subject-card" href="subject.html?id=${encodeURIComponent(s.id)}">
+        <span class="code">${s.code || ''}</span>
+        <h3>${s.name}</h3>
+        <p>${s.description || ''}</p>
+        <span class="meta">
+          <span>${s.topics.length} unit${s.topics.length === 1 ? '' : 's'}</span>
+          <span class="go">Open →</span>
+        </span>
+      </a>
+    `).join('');
+  })
+  .catch(() => {
+    document.getElementById('subject-grid').innerHTML =
+      '<p style="padding:28px;color:var(--muted);">Could not load subjects.json</p>';
+  });
+</script>
+
+</body>
+</html>
