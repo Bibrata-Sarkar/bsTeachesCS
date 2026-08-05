@@ -6,6 +6,12 @@
       "code": "BCA2012",
       "description": "Digital data representation, CPU architecture, memory hierarchy, I/O organization, and pipelining fundamentals.",
       "topics": [
+                {
+          "id": "unit-0",
+          "title": "COA Syllabus",
+          "summary": "Standard Syllabus For COA",
+          "pdf": "pdfs/computer-organization.pdf"
+        },
         {
           "id": "unit-1",
           "title": "Unit 1 — Introduction & Physical Data Handling",
