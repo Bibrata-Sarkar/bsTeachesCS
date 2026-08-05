@@ -37,6 +37,82 @@
           "pdf": "pdfs/computer-organization/unit-5.pdf"
         }
       ]
+    },
+    {
+      "id": "adsa",
+      "name": "Advanced Data Structures & Algorithms",
+      "code": "MCA1110",
+      "description": "Advanced tree/graph structures, algorithm design paradigms, and complexity analysis.",
+      "topics": [
+        {
+          "id": "unit-1",
+          "title": "Unit 1 — Algorithm Analysis & Complexity",
+          "summary": "Asymptotic notations, recurrence relations, and complexity classes.",
+          "pdf": "pdfs/adsa/unit-1.pdf"
+        },
+        {
+          "id": "unit-2",
+          "title": "Unit 2 — Advanced Trees",
+          "summary": "AVL trees, Red-Black trees, B-Trees, and B+ Trees.",
+          "pdf": "pdfs/adsa/unit-2.pdf"
+        },
+        {
+          "id": "unit-3",
+          "title": "Unit 3 — Graph Algorithms",
+          "summary": "Graph traversal, shortest path algorithms, and minimum spanning trees.",
+          "pdf": "pdfs/adsa/unit-3.pdf"
+        },
+        {
+          "id": "unit-4",
+          "title": "Unit 4 — Design Paradigms",
+          "summary": "Greedy, divide-and-conquer, and dynamic programming approaches.",
+          "pdf": "pdfs/adsa/unit-4.pdf"
+        },
+        {
+          "id": "unit-5",
+          "title": "Unit 5 — NP-Completeness & Advanced Topics",
+          "summary": "P vs NP, NP-hard/NP-complete problems, and approximation algorithms.",
+          "pdf": "pdfs/adsa/unit-5.pdf"
+        }
+      ]
+    },
+    {
+      "id": "daa",
+      "name": "Design & Analysis of Algorithms",
+      "code": "BCA2015",
+      "description": "Algorithm design techniques, complexity analysis, and problem-solving strategies.",
+      "topics": [
+        {
+          "id": "unit-1",
+          "title": "Unit 1 — Introduction to Algorithm Analysis",
+          "summary": "Growth of functions, recurrences, and basic analysis techniques.",
+          "pdf": "pdfs/daa/unit-1.pdf"
+        },
+        {
+          "id": "unit-2",
+          "title": "Unit 2 — Divide and Conquer",
+          "summary": "Merge sort, quick sort, and binary search variants.",
+          "pdf": "pdfs/daa/unit-2.pdf"
+        },
+        {
+          "id": "unit-3",
+          "title": "Unit 3 — Greedy Method & Dynamic Programming",
+          "summary": "Knapsack problem, activity selection, and optimal substructure.",
+          "pdf": "pdfs/daa/unit-3.pdf"
+        },
+        {
+          "id": "unit-4",
+          "title": "Unit 4 — Backtracking & Branch and Bound",
+          "summary": "N-Queens, graph coloring, and traveling salesman approaches.",
+          "pdf": "pdfs/daa/unit-4.pdf"
+        },
+        {
+          "id": "unit-5",
+          "title": "Unit 5 — NP-Complete Problems",
+          "summary": "Complexity theory and reduction techniques.",
+          "pdf": "pdfs/daa/unit-5.pdf"
+        }
+      ]
     }
   ]
 }
