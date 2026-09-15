@@ -79,6 +79,13 @@ fetch('data/subjects.json')
     document.getElementById('subject-code').textContent = subject.code || 'SUBJECT';
     document.getElementById('subject-name').textContent = subject.name;
     document.getElementById('subject-desc').textContent = subject.description || '';
+    const quizLink = document.getElementById('subject-quiz-link');
+if (subject.quiz) {
+  quizLink.href = subject.quiz;
+  quizLink.style.display = 'inline-block';
+} else {
+  quizLink.style.display = 'none';
+}
     document.getElementById('crumb-current').textContent = subject.name;
 
     const list = document.getElementById('topic-list');
