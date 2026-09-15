@@ -5,7 +5,7 @@
       "name": "Computer Organization",
       "code": "BCA2012",
       "description": "Digital data representation, CPU architecture, memory hierarchy, I/O organization, and pipelining fundamentals.",
-      "quiz": "pdfs/computer-organization/coa-quiz.html",
+      "quiz": "pdfs/computer-organization/coa_quiz.html",
       "topics": [
                 {
           "id": "unit-0",
