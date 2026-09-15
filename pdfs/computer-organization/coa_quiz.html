@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Computer Organization & Architecture - Quiz</title>
+<style>
+  :root{
+    --bg:#f4f6f9; --card:#ffffff; --text:#1c2530; --sub:#5b6672;
+    --accent:#2f5fd8; --accent-dark:#1f42a3; --danger:#d64545; --success:#1f9d5a;
+    --border:#e1e5ea;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+    background:var(--bg); color:var(--text); padding:20px;
+  }
+  .wrap{max-width:640px;margin:0 auto;}
+  .card{
+    background:var(--card); border:1px solid var(--border); border-radius:14px;
+    padding:28px 24px; margin-bottom:16px; box-shadow:0 2px 10px rgba(20,30,50,0.04);
+  }
+  h1{font-size:20px;margin:0 0 4px;}
+  h2{font-size:16px;margin:0 0 14px;color:var(--text);}
+  p.sub{color:var(--sub);font-size:14px;margin:0 0 20px;}
+  label{display:block;font-size:13px;color:var(--sub);margin-bottom:6px;margin-top:14px;}
+  input[type=text],input[type=email]{
+    width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;
+    font-size:14px;background:#fafbfc;
+  }
+  input:focus{outline:none;border-color:var(--accent);}
+  button{
+    background:var(--accent); color:#fff; border:none; border-radius:8px;
+    padding:12px 20px; font-size:15px; cursor:pointer; font-weight:600;
+    margin-top:20px; width:100%;
+  }
+  button:hover{background:var(--accent-dark);}
+  button.secondary{background:#eef1f6;color:var(--text);}
+  button.secondary:hover{background:#e2e7ee;}
+  .err{color:var(--danger);font-size:13px;margin-top:6px;display:none;}
+  .top-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+  .badge{
+    background:#eef1f6;color:var(--sub);font-size:12px;padding:4px 10px;border-radius:20px;
+  }
+  .timer{
+    font-weight:700; font-size:15px; padding:4px 12px; border-radius:20px;
+    background:#fdeceb; color:var(--danger);
+  }
+  .timer.ok{background:#e9f8ef;color:var(--success);}
+  .qtext{font-size:16px;font-weight:600;margin:6px 0 18px;line-height:1.5;}
+  .opt{
+    display:block; padding:12px 14px; border:1px solid var(--border); border-radius:9px;
+    margin-bottom:10px; cursor:pointer; font-size:14px; transition:.15s;
+  }
+  .opt:hover{border-color:var(--accent);}
+  .opt.selected{border-color:var(--accent); background:#eef2fd;}
+  .progress-bar{height:6px;background:#eef1f6;border-radius:3px;overflow:hidden;margin-bottom:18px;}
+  .progress-fill{height:100%;background:var(--accent);transition:width .3s;}
+  .result-score{font-size:42px;font-weight:700;color:var(--accent);text-align:center;margin:10px 0;}
+  .result-sub{text-align:center;color:var(--sub);font-size:14px;margin-bottom:20px;}
+  .rowline{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;}
+  .rowline:last-child{border-bottom:none;}
+  .hidden{display:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- START SCREEN -->
+  <div class="card" id="screen-start">
+    <h1>Computer Organization & Architecture</h1>
+    <p class="sub">Semester I BCA · 15 questions · 20 marks · Each question is timed</p>
+    <label>Full name</label>
+    <input type="text" id="s-name" placeholder="Your full name">
+    <label>Roll number</label>
+    <input type="text" id="s-roll" placeholder="e.g. BCA25-014">
+    <label>Email (optional)</label>
+    <input type="email" id="s-email" placeholder="you@example.com">
+    <div class="err" id="start-err">Please enter your name and roll number.</div>
+    <button onclick="startQuiz()">Start quiz</button>
+  </div>
+
+  <!-- QUIZ SCREEN -->
+  <div class="card hidden" id="screen-quiz">
+    <div class="top-row">
+      <span class="badge" id="q-progress">Question 1 of 15</span>
+      <span class="timer" id="q-timer">30s</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    <span class="badge" id="q-marks">1 mark</span>
+    <p class="qtext" id="q-text"></p>
+    <div id="q-options"></div>
+    <button onclick="submitAnswer()" id="next-btn">Next question</button>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <div class="card hidden" id="screen-result">
+    <h2>Quiz submitted</h2>
+    <div class="result-score" id="result-score">0 / 20</div>
+    <div class="result-sub" id="result-sub"></div>
+    <div id="result-breakdown"></div>
+    <button class="secondary" onclick="location.reload()">Close</button>
+  </div>
+
+</div>
+
+<script>
+const QUESTIONS = [
+  {marks:1,text:"Which term refers to the operational units and their interconnections that realize the architectural specifications?",opts:["Computer Architecture","Computer Organization","Instruction Set","Micro-architecture"],ans:1},
+  {marks:1,text:"Which functional unit performs arithmetic and logical operations?",opts:["Control Unit","Memory Unit","ALU","Input Unit"],ans:2},
+  {marks:1,text:"In the Von Neumann architecture, instructions and data:",opts:["Are stored in separate memories","Share the same memory","Are never stored","Are stored only in registers"],ans:1},
+  {marks:1,text:"The Harvard architecture differs from Von Neumann mainly by:",opts:["Using no control unit","Having separate memories for instructions and data","Having no ALU","Using only octal numbers"],ans:1},
+  {marks:1,text:"The hexadecimal equivalent of decimal 255 is:",opts:["EE","FE","FF","F0"],ans:2},
+  {marks:1,text:"Which code assigns only a single bit change between successive values?",opts:["ASCII","BCD","Gray code","Hexadecimal"],ans:2},
+  {marks:1,text:"BCD stands for:",opts:["Binary Coded Decimal","Basic Computer Design","Binary Circuit Diagram","Byte Coded Data"],ans:0},
+  {marks:1,text:"Which gate produces an output of 1 only when all inputs are 1?",opts:["OR","AND","NOR","XOR"],ans:1},
+  {marks:1,text:"The NAND gate is functionally equivalent to:",opts:["AND followed by NOT","OR followed by NOT","XOR followed by NOT","NOT followed by AND"],ans:0},
+  {marks:1,text:"A half-adder circuit produces which two outputs?",opts:["Sum and Carry","Product and Remainder","Input and Output","Clock and Reset"],ans:0},
+  {marks:2,text:"Which of the following best distinguishes a full-adder from a half-adder?",opts:["A full-adder has no carry output","A full-adder accepts a carry-in from a previous stage","A full-adder only works with hexadecimal numbers","A full-adder cannot add two single bits"],ans:1},
+  {marks:2,text:"During the instruction cycle, the step that interprets the fetched instruction's opcode is called:",opts:["Fetch","Decode","Write-back","Execute"],ans:1},
+  {marks:2,text:"The register that holds the address of the next instruction to be executed is the:",opts:["Accumulator","Instruction Register","Program Counter","Memory Buffer Register"],ans:2},
+  {marks:2,text:"In an addressing mode where the instruction directly specifies the value to be used, this is called:",opts:["Direct addressing","Immediate addressing","Indirect addressing","Register addressing"],ans:1},
+  {marks:2,text:"The IEEE 754 standard is primarily concerned with:",opts:["Instruction set formats","Floating-point number representation","Control unit design","Boolean algebra theorems"],ans:1},
+];
+const TIME_PER_Q = 30; // seconds
+
+let student = {};
+let current = 0;
+let answers = [];
+let timerId = null;
+let timeLeft = TIME_PER_Q;
+
+function startQuiz(){
+  const name = document.getElementById('s-name').value.trim();
+  const roll = document.getElementById('s-roll').value.trim();
+  const email = document.getElementById('s-email').value.trim();
+  if(!name || !roll){
+    document.getElementById('start-err').style.display = 'block';
+    return;
+  }
+  document.getElementById('start-err').style.display = 'none';
+  student = {name, roll, email, startedAt: new Date().toISOString()};
+  answers = QUESTIONS.map(()=>({selected:null, correct:false, timedOut:false}));
+  document.getElementById('screen-start').classList.add('hidden');
+  document.getElementById('screen-quiz').classList.remove('hidden');
+  current = 0;
+  loadQuestion();
+}
+
+function loadQuestion(){
+  clearInterval(timerId);
+  const q = QUESTIONS[current];
+  document.getElementById('q-progress').textContent = `Question ${current+1} of ${QUESTIONS.length}`;
+  document.getElementById('q-marks').textContent = q.marks === 1 ? '1 mark' : '2 marks';
+  document.getElementById('q-text').textContent = q.text;
+  document.getElementById('progress-fill').style.width = ((current)/QUESTIONS.length*100)+'%';
+  const optsDiv = document.getElementById('q-options');
+  optsDiv.innerHTML = '';
+  q.opts.forEach((opt, i)=>{
+    const div = document.createElement('div');
+    div.className = 'opt';
+    div.textContent = opt;
+    div.onclick = ()=>selectOption(i, div);
+    optsDiv.appendChild(div);
+  });
+  document.getElementById('next-btn').textContent = current === QUESTIONS.length-1 ? 'Submit quiz' : 'Next question';
+  timeLeft = TIME_PER_Q;
+  updateTimerDisplay();
+  timerId = setInterval(()=>{
+    timeLeft--;
+    updateTimerDisplay();
+    if(timeLeft <= 0){
+      clearInterval(timerId);
+      answers[current].timedOut = true;
+      advance();
+    }
+  },1000);
+}
+
+function updateTimerDisplay(){
+  const t = document.getElementById('q-timer');
+  t.textContent = timeLeft + 's';
+  t.className = timeLeft <= 10 ? 'timer' : 'timer ok';
+}
+
+function selectOption(i, el){
+  document.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  answers[current].selected = i;
+}
+
+function submitAnswer(){
+  advance();
+}
+
+function advance(){
+  clearInterval(timerId);
+  const q = QUESTIONS[current];
+  const a = answers[current];
+  a.correct = a.selected === q.ans;
+  current++;
+  if(current < QUESTIONS.length){
+    loadQuestion();
+  } else {
+    finishQuiz();
+  }
+}
+
+async function finishQuiz(){
+  document.getElementById('screen-quiz').classList.add('hidden');
+  document.getElementById('screen-result').classList.remove('hidden');
+  let score = 0, maxScore = 0, correctCount = 0;
+  QUESTIONS.forEach((q,i)=>{
+    maxScore += q.marks;
+    if(answers[i].correct){ score += q.marks; correctCount++; }
+  });
+  document.getElementById('result-score').textContent = `${score} / ${maxScore}`;
+  document.getElementById('result-sub').textContent = `${correctCount} of ${QUESTIONS.length} questions correct`;
+
+  const breakdown = document.getElementById('result-breakdown');
+  breakdown.innerHTML = '';
+  QUESTIONS.forEach((q,i)=>{
+    const row = document.createElement('div');
+    row.className = 'rowline';
+    const status = answers[i].timedOut ? 'Timed out' : (answers[i].correct ? 'Correct' : 'Incorrect');
+    row.innerHTML = `<span>Q${i+1} (${q.marks}m)</span><span>${status}</span>`;
+    breakdown.appendChild(row);
+  });
+
+  const record = {
+    name: student.name,
+    roll: student.roll,
+    email: student.email,
+    startedAt: student.startedAt,
+    submittedAt: new Date().toISOString(),
+    score, maxScore,
+    answers: answers.map((a,i)=>({q:i+1, selected:a.selected, correct:a.correct, timedOut:a.timedOut}))
+  };
+
+  try{
+    const key = 'submission:' + student.roll.replace(/\s+/g,'_') + ':' + Date.now();
+    await window.storage.set(key, JSON.stringify(record), true);
+  }catch(e){
+    console.error('Could not save submission', e);
+  }
+}
+</script>
+</body>
+</html>
